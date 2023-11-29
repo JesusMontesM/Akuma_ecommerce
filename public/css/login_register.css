@@ -51,35 +51,15 @@ body {
     flex-direction: row;
   }
   
-  main div {
-    align-items: stretch;
-    margin: 0px 16px;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-  
-  div #vermas {
-    align-items: stretch;
-    margin: 0px 16px;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-  
   header {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
-  
-  div #productos {
-    align-items: stretch;
-    margin: 0px 16px;
-    padding: 0px;
+  main {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    flex-direction: column;
+    align-items: center;
   }
+  

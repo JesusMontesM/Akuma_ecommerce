@@ -39,23 +39,106 @@ function handleSQLError(response, error, result, callback) {
 
 // Endpoints para Index------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// carrusel-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// carrusel de productos-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 app.get(`/carrusel`, (request, response) => {
   // select * from carrusel
-  connection.query("select * from carrusel", (error, result, fields) => {
-    handleSQLError(response, error, result, (result) => {
-        let total = request.query.total;
-        let carrusel = [];
-        for (let i = 0; i < total; i++) {
-          carrusel[i] = result[i];
-        }
-        response.send(carrusel);
-    });
+  connection.query("SELECT * FROM carrusel", (error, result, fields) => {
+    if (error) {
+      response.status(400).send(`error: ${error.message}`);
+      return;
+    }
+    let total = request.query.total;
+    let productos = [];
+    for (let i = 0; i < total; i++) {
+      productos[i] = result[i];
+    }
+    response.send(productos);
   });
 });
 
+// mostrar producto segun id------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+app.get("/carrusel/:idproducto", function (request, response) {
+  const idproducto = request.params.idproducto;
+
+  connection.query(
+    `select * from carrusel where id = "${idproducto}"`,
+    function (error, result, fields) {
+      if (error) {
+        response.status(400).send(`error: ${error.message}`);
+        return;
+      }
+
+      if (result.length == 0) {
+        response.send({});
+      } else {
+        response.send(result[0]);
+      }
+    }
+  );
+});
+
+// Termina el Index------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Login-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+app.post(`/login`, function (request, response) {
+  let email = request.body.email;
+  let password = request.body.password;
+  let nombre = request.body.nombre;
+  connection.query(
+    `select * from usuarios where email = "${email}" and password = "${password}"`,
+    function (error, result, fields) {
+      if (error) {
+        response.status(400).send(`error: ${error.message}`);
+        return;
+      }
+
+      if (result.length == 0) {
+        response.send({ message: "email o password no validos" });
+      } else {
+        response.send({
+          message: `usuario logueado: ${email}`,
+          registrado: true,
+        });
+      }
+    }
+  );
+});
+
+// registro--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+app.post(`/registro`, function (request, response) {
+  // hacer un registro
+  let nombre = request.body.nombre;
+  let apellidos = request.body.apellidos;
+  let email = request.body.email;
+  let password = request.body.password;
+
+  // console.log(request.body);
+
+  // insert into usuarios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  connection.query(
+    `insert into usuarios (nombre, apellidos, email, password) values ("${nombre}", "${apellidos}", "${email}", "${password}")`,
+    function (error, result, fields) {
+      if (error) {
+        response.status(400).send(`error: ${error.message}`);
+        return;
+      }
+      //   console.log("usuario registrado");
+      else {
+        response.send({
+          message: `usuario registrado: ${email}`,
+          registrado: true,
+        });
+      }
+    }
+  );
+});
+
+// Termina login y registro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 app.listen(8000, () => {
   console.log("API up and running!");

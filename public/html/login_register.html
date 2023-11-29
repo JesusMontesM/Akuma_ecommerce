@@ -16,7 +16,7 @@
 
     <!-- Hoja de estilo----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/login_register.css" />
 
     <!-- Head------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
   </head>
@@ -64,12 +64,65 @@
       </div>
     </nav>
 
-    <!-- carrusel----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- login register------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
     <main>
-      <div id="carrusel"></div>
-      <div id="vermas"></div>
-    </main>
+        <!-- login----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  
+        <div>
+          <h3>Iniciar sesión</h3>
+          <p>Accede con tus datos personales</p>
+  
+          <input type="email" name="email" id="email" placeholder="Email" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Contraseña"
+          />
+          <button onclick="login()">Iniciar sesión</button>
+        </div>
+  
+        <!-- register----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  
+        <div>
+          <h3>Regístrate</h3>
+          <p>Si todavía no tienes cuenta, ¿a que esperas? regístrate</p>
+  
+          <input type="nombre" name="nombre" id="nombre" placeholder="Nombre" />
+          <input
+            type="apellidos"
+            name="apellidos"
+            id="apellidos"
+            placeholder="Apellidos"
+          />
+          <input
+            type="email"
+            name="email"
+            id="email_register"
+            placeholder="Email"
+          />
+          <input
+          type="email"
+          name="email"
+          id="repite_email"
+          placeholder="Repita su email"
+        />
+          <input
+            type="password"
+            name="password"
+            id="password_register"
+            placeholder="Contraseña"
+          />
+          <input
+            type="password"
+            name="password"
+            id="repitecontraseña"
+            placeholder="Repite contraseña"
+          />
+          <button onclick="register()">Crear cuenta</button>
+        </div>
+      </main>
 
     <footer>
       <!-- <div>
@@ -86,6 +139,6 @@
 
     <!-- llamada a nuestro js----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    <script src="/js/index.js"></script>
+    <script src="/js/login_register.js"></script>
   </body>
 </html>
