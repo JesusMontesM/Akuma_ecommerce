@@ -138,6 +138,26 @@ app.post(`/registro`, function (request, response) {
   );
 });
 
+// Mostrar todos los productos
+
+app.get(`/todos_productos`, (request, response) => {
+  // select * from carrusel
+  connection.query("SELECT * FROM productos", (error, result, fields) => {
+    if (error) {
+      response.status(400).send(`error: ${error.message}`);
+      return;
+    }
+    let total = request.query.total;
+    let productos = [];
+    for (let i = 0; i < total; i++) {
+      productos[i] = result[i];
+    }
+    response.send(productos);
+  });
+});
+
+
+
 // Termina login y registro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 app.listen(8000, () => {

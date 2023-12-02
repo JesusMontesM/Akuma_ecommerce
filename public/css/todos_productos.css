@@ -64,14 +64,32 @@ body {
     justify-content: space-around;
     align-items: center;
   }
-  main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  
+  div .productos {
     align-items: center;
+    margin: 3px 3px;
+    padding: 3px;
+    display: flex;
+    justify-content:start;
+    flex-direction: row;
+  }
+
+  div #todos_los_productos {
+    align-items: row;
+    margin: 3px 3px;
+    padding: 3px;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
   }
   
-  .box {
-    border: 2px solid rgb(151, 0, 0);
-    border-radius: 8px;
+  .img-chica {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
   }
+
+  .box {
+      border: 2px solid rgb(151, 0, 0);
+      width: 50%;
+    }

@@ -23,8 +23,7 @@ window.addEventListener("load", function (event) {
       for (let i = 0; i < json.length; i++) {
         containerDiv.innerHTML += `<div id="productos">  <div>        <img
         src="../${json[i].foto}"
-        alt="imagen"
-        width="15%"
+        class="img-chica"
       /></div><li>${json[i].titulo} <button onclick="carruselClick(${json[i].id})">Ver mas</button></li></div>`;
       }
       containerDiv.innerHTML += "</div>";
@@ -39,7 +38,7 @@ window.addEventListener("load", function (event) {
 function desloguear() {
   localStorage.removeItem("email");
   let loginemail = document.getElementById("registrado");
-  loginemail.innerHTML = `<div id="registrado"><li><a href="/html/login.html">Login/registro</a></li></div>`;
+  loginemail.innerHTML = `<div id="registrado"><li><a href="/html/login_register.html">Login/registro</a></li></div>`;
 }
 
 // funcion para mostrar informacion del carrusel-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -55,8 +54,7 @@ function carruselClick(productoID) {
       <div id= "vermas">
       <div>        <img
       src="../${json.foto}"
-      alt="imagen"
-      width="15%"
+      class="img-normalizada"
     /></div>
       <h5>Nombre: ${json.titulo}</h5>
       <h5>Descripcion: ${json.descripcion}</h5>
