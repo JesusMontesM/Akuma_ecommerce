@@ -138,7 +138,7 @@ app.post(`/registro`, function (request, response) {
   );
 });
 
-// Mostrar todos los productos
+// Mostrar todos los productos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 app.get(`/todos_productos`, (request, response) => {
   // select * from carrusel
@@ -156,9 +156,9 @@ app.get(`/todos_productos`, (request, response) => {
   });
 });
 
-
-
 // Termina login y registro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 app.listen(8000, () => {
   console.log("API up and running!");

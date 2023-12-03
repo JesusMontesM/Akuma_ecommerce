@@ -75,3 +75,9 @@ body {
     border: 2px solid rgb(151, 0, 0);
     border-radius: 8px;
   }
+
+    
+li {
+  display: flex; 
+  padding: 0px;
+}

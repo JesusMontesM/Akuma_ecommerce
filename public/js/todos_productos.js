@@ -13,7 +13,7 @@ window.addEventListener("load", function (event) {
   
 // funcion para mostrar productos-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-fetch(`${host}/todos_productos?total=3`)
+fetch(`${host}/todos_productos?total=5`)
 .then(function (response) {
   return response.json();
 })

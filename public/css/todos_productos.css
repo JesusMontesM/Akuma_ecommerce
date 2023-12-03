@@ -93,3 +93,9 @@ body {
       border: 2px solid rgb(151, 0, 0);
       width: 50%;
     }
+
+      
+li {
+    display: flex; 
+    padding: 0px;
+}
