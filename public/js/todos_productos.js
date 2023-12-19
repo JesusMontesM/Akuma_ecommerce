@@ -4,8 +4,8 @@ window.addEventListener("load", function (event) {
   // funcion para mostrar usuario donde login/register-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   if (localStorage.getItem("email")) {
-    let registrado = document.getElementById("registrado");
-    registrado.innerHTML = `<li>${localStorage.getItem(
+    let login_register = document.getElementById("login_register");
+    login_register.innerHTML = `<li>${localStorage.getItem(
       "email"
     )}</li><button onClick="desloguear()">Salir</button>`;
   }
@@ -25,7 +25,7 @@ fetch(`${host}/todos_productos?total=5`)
     containerDiv.innerHTML += `<a href="/html/producto.html"><div class="productos">  <div>        <img
     src="../${json[i].foto}"
     class="img-chica"
-  /></div></a><ul><li>${json[i].nombre}</li> <li>${json[i].precio} €</li> <li>${json[i].valoracion}/10</li></ul> </div> `;
+  /></div></a><ul><li>${json[i].nombre}</li> <li>${json[i].precio} €</li> <li>${json[i].valoracion}/10</li> <li><button onclick="añadirProducto(${json[i].id})">Añadir al carrito</button></li></ul> </div> `;
   }
   containerDiv.innerHTML += "";
 })
@@ -35,10 +35,20 @@ fetch(`${host}/todos_productos?total=5`)
 
 });
 
+// funcion añadir al carrito-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// <button onclick="agregarAlCarrito('Producto 1', 29.99)">Añadir al Carrito</button>
+
+    // Función para agregar un producto al carrito
+    // function añadir_carrito() {
+        
+    //     alert(`Se ha añadido al carrito correctamente.`);
+    // }
 // funcion desloguearse-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function desloguear() {
     localStorage.removeItem("email");
-    let loginemail = document.getElementById("registrado");
-    loginemail.innerHTML = `<div id="registrado"><li><a href="/html/login_register.html">Login/registro</a></li></div>`;
+    let loginemail = document.getElementById("login_register");
+    loginemail.innerHTML = `<div id="login_register"><li><a href="/html/login_register.html">Login/registro</a></li></div>`;
 }

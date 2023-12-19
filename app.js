@@ -100,7 +100,7 @@ app.post(`/login`, function (request, response) {
       } else {
         response.send({
           message: `usuario logueado: ${email}`,
-          registrado: true,
+          login_register: true,
         });
       }
     }
@@ -131,7 +131,7 @@ app.post(`/registro`, function (request, response) {
       else {
         response.send({
           message: `usuario registrado: ${email}`,
-          registrado: true,
+          login_register: true,
         });
       }
     }
@@ -158,6 +158,165 @@ app.get(`/todos_productos`, (request, response) => {
 
 // Termina login y registro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// endpoint para carrito-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// app.post(`/carrito`, function (request, response) {
+//   // comenzar una compra
+//   let usuarioID = request.body.usuarioID;
+//   let direccionID = request.body.direccionID;
+//   let tarjetaID = request.body.tarjetaID;
+//   let precio_final = request.body.precio_final;
+//   let compra_realizada = request.body.compra_realizada;
+
+//   // insert into compras------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//   connection.query(
+//     `insert into compras (usuarioID, direccionID, tarjetaID, precio_final, compra_realizada) values ("${usuarioID}", "${direccionID}", "${tarjetaID}", "${precio_final}", "${compra_realizada}")`,
+//     function (error, result, fields) {
+//       if (error) {
+//         response.status(400).send(`error: ${error.message}`);
+//         return;
+//       } else {
+//         response.send({
+//           message: `añadido al carrito`,
+//         });
+//       }
+//     }
+//   );
+
+// });
+
+// app.post(`/carrito/:compraID`, function (request, response) {
+
+//   let precio_final = request.body.precio_final;
+
+//   // actualizar una compra------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//   connection.query(
+//     `UPDATE compras 
+//     SET 
+//        precio_final = '${precio_final}' 
+//     WHERE 
+//        id = 2;`,
+//     function (error, result, fields) {
+//       if (error) {
+//         response.status(400).send(`error: ${error.message}`);
+//         return;
+//       } else {
+//         response.send({
+//           message: `añadido al carrito`,
+//         });
+//       }
+//     }
+//   );
+
+// });
+
+// endpoint para carrito-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+app.post(`/carrito`, function (request, response) {
+  // comenzar una compra
+  let compraID = request.body.compraID;
+  let productoID = request.body.productoID;
+  let cantidad = request.body.cantidad;
+
+
+  // insert into compras------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  connection.query(
+    `insert into compra_producto (compraID, productoID, cantidad) values ("${compraID}", "${productoID}", "${cantidad}")`,
+    function (error, result, fields) {
+      if (error) {
+        response.status(400).send(`error: ${error.message}`);
+        return;
+      } else {
+        response.send({
+          message: `añadido al carrito`,
+        });
+      }
+    }
+  );
+
+});
+
+app.post(`/carrito/:compraID`, function (request, response) {
+
+  let precio_final = request.body.precio_final;
+
+  // actualizar una compra------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  connection.query(
+    `UPDATE compras 
+    SET 
+       precio_final = '${precio_final}' 
+    WHERE 
+       id = 2;`,
+    function (error, result, fields) {
+      if (error) {
+        response.status(400).send(`error: ${error.message}`);
+        return;
+      } else {
+        response.send({
+          message: `añadido al carrito`,
+        });
+      }
+    }
+  );
+
+});
+
+// mostar compra carrito-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+app.get(`/carrito/:compraID`, function (request, response) {
+  connection.query(
+    `SELECT * FROM productos
+  JOIN compra_producto ON productos.id=compra_producto.productoID
+  JOIN compras ON compras.id=compra_producto.compraID
+      WHERE compraID= ${request.params.compraID}`,
+    function (error, result, fields) {
+      if (error) {
+        return console.error(`error: ${error.message}`);
+      }
+      response.send(result);
+    }
+  );
+});
+
+// endpoint para forma de pago-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// app.get(`/formasPago/:usuarioId`, function(request, response){
+//   connection.query(`SELECT * FROM tarjetas where usuarioID=${request.params.usuarioID}`,
+//   function(error, result, fields){
+//       if(error){
+//           return console.error(`error:${error.message}`);
+//       }
+//       response.send(result);
+//   })
+//   console.log("Listado de tarjeta del usuario correspondiente");
+// })
+
+// app.post(`/tarjetas/:usuarioId`, function (request, response) {
+//   let numeroTarjeta = request.body.numeroTarjeta;
+//   let titularTarjeta = request.body.titularTarjeta;
+//   let caducidadTarjeta = request.body.caducidadTarjeta;
+//   let codigoSeguridadTarjeta = request.body.codigoSeguridadTarjeta;
+//   let usuarioId = request.params.usuarioId;
+
+//   console.log(request.body.titularTarjeta, request.params);
+//   connection.query(`INSERT INTO tarjetas (numero_tarjeta, titular, caducidad, codigo, usuarioId) VALUES 
+//                   ("${numeroTarjeta}",
+//                   "${titularTarjeta}",
+//                   "${caducidadTarjeta}",
+//                   "${codigoSeguridadTarjeta}",
+//                   ${usuarioId})`,
+//       function (error, result, fields) {
+//           if (error) {
+//               return console.error(`error: ${error.message}`);
+//           }
+//           response.send({ message: `Card added` });
+//       });
+//   console.log("Card added to database")
+// });
 
 
 app.listen(8000, () => {

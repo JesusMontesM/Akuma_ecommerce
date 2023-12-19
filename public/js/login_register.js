@@ -23,7 +23,7 @@ function login() {
 
       alert(json.message);
 
-      if (json.registrado) {
+      if (json.login_register) {
         localStorage.setItem("email", email);
         window.location.href = "/index.html";
       }
@@ -62,7 +62,7 @@ function register() {
         return response.json();
       })
       .then(function (json) {
-        if (json.registrado) {
+        if (json.login_register) {
           localStorage.setItem("email", email);
           window.location.href = "/index.html";
           alert("Usuario registrado");

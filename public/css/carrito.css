@@ -83,28 +83,35 @@ li {
     padding: 0px;
 }
 
-  div .productos {
-    align-items: center;
-    margin: 3px 3px;
-    padding: 3px;
-    display: flex;
-    justify-content:start;
-    flex-direction: row;
+/* main div {
+  align-items: ;
+  margin: 16px 16px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+   */
+ 
+   .img-chica {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
   }
 
-  div #todos_los_productos {
-    align-items: row;
-    margin: 3px 3px;
-    padding: 3px;
-    display: flex;
-    justify-content: start;
-    flex-direction: row;
-  }
-  
-  .img-chica {
-    width: 300px;
-    height: 300px;
+   .img-enana {
+    width: 150px;
+    height: 150px;
     object-fit: cover;
+  }
+
+  #carrusel {
+    align-items: stretch;
+    margin: 16px 16px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
   }
 
   .box {
