@@ -1,4 +1,4 @@
-const host = "http://localhost:8000";
+const host = "http://ec2-18-201-203-44.eu-west-1.compute.amazonaws.com:8000";
 
 window.addEventListener("load", function (event) {
   // funcion para mostrar usuario donde login/register-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

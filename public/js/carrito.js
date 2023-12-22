@@ -1,4 +1,4 @@
-const host = "http://localhost:8000";
+const host = "http://ec2-18-201-203-44.eu-west-1.compute.amazonaws.com:8000";
 
 window.addEventListener("load", mostrarCarrito(1)); // De momento pondremos la compra 1 hasta que tengamos las compras----------------------------------------------------------------------------------------------------------------------
 
